@@ -1,11 +1,10 @@
-package order_system.member.entity;
+package order_system.member.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import order_system.global.embedded.Address;
 import order_system.global.BaseEntity;
 
 @Getter
@@ -20,12 +19,17 @@ public class MemberJpaEntity extends BaseEntity {
 
     private String username;
 
-    @Embedded
-    private Address address;
+    String state;
+
+    String city;
+
+    String district;
 
     @Builder
-    private MemberJpaEntity(final String username, final Address address) {
+    private MemberJpaEntity(String username, String state, String city, String district) {
         this.username = username;
-        this.address = address;
+        this.state = state;
+        this.city = city;
+        this.district = district;
     }
 }

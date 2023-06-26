@@ -1,4 +1,4 @@
-package order_system.category_item.entity;
+package order_system.category_item.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

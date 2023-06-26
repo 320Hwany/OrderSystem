@@ -1,6 +1,6 @@
 package order_system.member.repository;
 
-import order_system.member.entity.MemberJpaEntity;
+import order_system.member.domain.entity.MemberJpaEntity;
 import order_system.member.exception.MemberNotFoundException;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +11,11 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     public MemberRepositoryImpl(final MemberJpaRepository memberJpaRepository) {
         this.memberJpaRepository = memberJpaRepository;
+    }
+
+    @Override
+    public void save(MemberJpaEntity entity) {
+        memberJpaRepository.save(entity);
     }
 
     @Override
