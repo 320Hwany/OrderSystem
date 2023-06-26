@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Builder
 public record Member(
         long memberId,
+        String password,
         String username,
         String state,
         String city,

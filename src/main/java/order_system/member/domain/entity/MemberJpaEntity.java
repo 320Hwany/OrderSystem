@@ -19,18 +19,21 @@ public class MemberJpaEntity extends BaseEntity {
 
     private String username;
 
-    String state;
+    private String password;
 
-    String city;
+    private String state;
 
-    String district;
+    private String city;
 
-    String detailedAddress;
+    private String district;
+
+    private String detailedAddress;
 
     @Builder
-    private MemberJpaEntity(final String username, final String state, final String city,
-                            final String district, final String detailedAddress) {
+    private MemberJpaEntity(final String username, final String password, final String state,
+                            final String city, final String district, final String detailedAddress) {
         this.username = username;
+        this.password = password;
         this.state = state;
         this.city = city;
         this.district = district;

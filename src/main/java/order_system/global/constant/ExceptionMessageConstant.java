@@ -2,8 +2,9 @@ package order_system.global.constant;
 
 public enum ExceptionMessageConstant {
 
-    SESSION_NOTFOUND_EXCEPTION("세션을 찾을 수 없습니다"),
-    MEMBER_NOTFOUND_EXCEPTION("회원을 찾을 수 없습니다");
+    SESSION_NOT_FOUND_EXCEPTION("세션을 찾을 수 없습니다"),
+    MEMBER_NOT_FOUND_EXCEPTION("회원을 찾을 수 없습니다"),
+    MEMBER_NOT_MATCH_EXCEPTION("회원정보가 일치하지 않습니다");
 
     public final String message;
 

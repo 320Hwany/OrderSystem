@@ -24,6 +24,7 @@ class CommandSignupServiceTest {
         // given
         SignupRequestDto dto = SignupRequestDto.builder()
                 .username("회원 이름")
+                .password("1234")
                 .state("경기도")
                 .city("수원시")
                 .district("영통구")

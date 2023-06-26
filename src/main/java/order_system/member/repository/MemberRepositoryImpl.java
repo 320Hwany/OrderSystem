@@ -4,6 +4,8 @@ import order_system.member.domain.entity.MemberJpaEntity;
 import order_system.member.exception.MemberNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
 
@@ -14,7 +16,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public void save(MemberJpaEntity entity) {
+    public void save(final MemberJpaEntity entity) {
         memberJpaRepository.save(entity);
     }
 
@@ -22,6 +24,11 @@ public class MemberRepositoryImpl implements MemberRepository {
     public MemberJpaEntity getById(final long memberId) {
         return memberJpaRepository.findById(memberId)
                 .orElseThrow(MemberNotFoundException::new);
+    }
+
+    @Override
+    public Optional<MemberJpaEntity> findByUsername(final String username) {
+        return memberJpaRepository.findByUsername(username);
     }
 
     @Override
