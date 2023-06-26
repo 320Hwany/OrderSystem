@@ -25,6 +25,7 @@ public class MemberMapper {
     public static MemberJpaEntity toEntity(final SignupRequestDto dto) {
         return MemberJpaEntity.builder()
                 .username(dto.username())
+                .password(dto.password())
                 .state(dto.state())
                 .city(dto.city())
                 .district(dto.district())

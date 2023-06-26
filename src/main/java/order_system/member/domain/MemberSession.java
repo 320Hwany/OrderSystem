@@ -22,7 +22,7 @@ public class MemberSession implements Serializable {
         this.memberId = memberId;
     }
 
-    public void makeSession(HttpServletRequest request) {
+    public void makeSession(final HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute(MEMBER_SESSION.value, this);
     }
