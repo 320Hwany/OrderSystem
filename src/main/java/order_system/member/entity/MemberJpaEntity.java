@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import order_system.global.Address;
+import order_system.global.embedded.Address;
 import order_system.global.BaseEntity;
 
 @Getter

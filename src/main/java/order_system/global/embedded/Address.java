@@ -1,4 +1,4 @@
-package order_system.global;
+package order_system.global.embedded;
 
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
