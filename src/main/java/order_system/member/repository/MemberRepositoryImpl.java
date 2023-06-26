@@ -23,4 +23,9 @@ public class MemberRepositoryImpl implements MemberRepository {
         return memberJpaRepository.findById(memberId)
                 .orElseThrow(MemberNotFoundException::new);
     }
+
+    @Override
+    public long count() {
+        return memberJpaRepository.count();
+    }
 }

@@ -11,6 +11,7 @@ public record Member(
         String state,
         String city,
         String district,
+        String detailedAddress,
         LocalDateTime createdAt,
         LocalDateTime lastModifiedAt
 ) {

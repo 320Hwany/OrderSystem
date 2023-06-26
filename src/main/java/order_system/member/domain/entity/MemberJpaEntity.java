@@ -25,11 +25,15 @@ public class MemberJpaEntity extends BaseEntity {
 
     String district;
 
+    String detailedAddress;
+
     @Builder
-    private MemberJpaEntity(String username, String state, String city, String district) {
+    private MemberJpaEntity(final String username, final String state, final String city,
+                            final String district, final String detailedAddress) {
         this.username = username;
         this.state = state;
         this.city = city;
         this.district = district;
+        this.detailedAddress = detailedAddress;
     }
 }

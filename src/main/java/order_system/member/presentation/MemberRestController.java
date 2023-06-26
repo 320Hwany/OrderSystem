@@ -1,5 +1,6 @@
 package order_system.member.presentation;
 
+import jakarta.validation.Valid;
 import order_system.member.application.command.CommandSignupService;
 import order_system.member.mapper.dto.SignupRequestDto;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class MemberRestController {
     }
 
     @PostMapping("/signup")
-    public void signup(@RequestBody final SignupRequestDto dto) {
+    public void signup(@RequestBody @Valid final SignupRequestDto dto) {
         commandSignupService.command(dto);
     }
 }

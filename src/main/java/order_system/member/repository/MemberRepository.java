@@ -7,4 +7,6 @@ public interface MemberRepository {
     void save(final MemberJpaEntity entity);
 
     MemberJpaEntity getById(final long memberId);
+
+    long count();
 }

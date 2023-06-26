@@ -11,6 +11,7 @@ public class MemberMapper {
                 .state(dto.state())
                 .city(dto.city())
                 .district(dto.district())
+                .detailedAddress(dto.detailedAddress())
                 .build();
     }
 }
