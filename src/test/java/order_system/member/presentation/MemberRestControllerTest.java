@@ -1,6 +1,7 @@
 package order_system.member.presentation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import order_system.member.domain.entity.MemberJpaEntity;
 import order_system.member.mapper.dto.LoginRequestDto;
 import order_system.member.mapper.dto.SignupRequestDto;
@@ -10,10 +11,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
@@ -41,8 +44,8 @@ class MemberRestControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/signup")
-                        .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/signup")
+                        .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest());
     }
@@ -61,8 +64,8 @@ class MemberRestControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/signup")
-                        .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/signup")
+                        .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
     }
@@ -76,8 +79,8 @@ class MemberRestControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/login")
-                        .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/login")
+                        .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest());
     }
@@ -86,12 +89,7 @@ class MemberRestControllerTest {
     @DisplayName("회원이름과 비밀번호가 일치하면 로그인에 성공합니다")
     void loginSuccess() throws Exception {
         // given
-        MemberJpaEntity entity = MemberJpaEntity.builder()
-                .username("회원 이름")
-                .password("1234")
-                .build();
-
-        memberRepository.save(entity);
+        signup();
 
         LoginRequestDto dto = LoginRequestDto.builder()
                 .username("회원 이름")
@@ -99,9 +97,54 @@ class MemberRestControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/login")
-                        .contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/login")
+                        .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("로그인하지 않으면 정보를 가져올 수 없습니다")
+    void unauthorizedMember() throws Exception {
+        // expected
+        mockMvc.perform(get("/api/member"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @DisplayName("로그인한 회원의 정보를 가져옵니다")
+    void getSuccess() throws Exception {
+        // given
+        signup();
+        MockHttpSession session = loginMemberSession();
+
+        // expected
+        mockMvc.perform(get("/api/member")
+                        .session(session))
+                .andExpect(status().isOk());
+    }
+
+    protected void signup() {
+        MemberJpaEntity entity = MemberJpaEntity.builder()
+                .username("회원 이름")
+                .password("1234")
+                .build();
+
+        memberRepository.save(entity);
+    }
+
+    protected MockHttpSession loginMemberSession() throws Exception {
+        LoginRequestDto dto = LoginRequestDto.builder()
+                .username("회원 이름")
+                .password("1234")
+                .build();
+
+        MockHttpServletRequest request = mockMvc.perform(post("/api/login")
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
+                .andReturn().getRequest();
+
+        HttpSession session = request.getSession();
+        return (MockHttpSession)session;
     }
 }

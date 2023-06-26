@@ -1,22 +1,17 @@
-package order_system.item.domain;
+package order_system.item.mapper.dto;
 
 import lombok.Builder;
 import order_system.item.enumtype.BottomSize;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
 
-import java.time.LocalDateTime;
-
 @Builder
-public record Item(
-        long itemId,
+public record ItemSaveRequestDto(
         String itemName,
         long itemPrice,
         long stockQuantity,
         ShoeSize shoeSize,
         TopSize topSize,
-        BottomSize bottomSize,
-        LocalDateTime createdAt,
-        LocalDateTime lastModifiedAt
+        BottomSize bottomSize
 ) {
 }

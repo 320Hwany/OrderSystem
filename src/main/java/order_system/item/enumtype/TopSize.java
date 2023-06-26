@@ -1,8 +1,6 @@
-package order_system.item;
+package order_system.item.enumtype;
 
-import lombok.Getter;
 
-@Getter
 public enum TopSize {
 
     S("small"),
@@ -10,7 +8,7 @@ public enum TopSize {
     L("large"),
     XL("X large");
 
-    private final String value;
+    public final String value;
 
     TopSize(final String value) {
         this.value = value;

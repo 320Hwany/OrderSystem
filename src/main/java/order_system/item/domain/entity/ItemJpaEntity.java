@@ -6,7 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import order_system.global.BaseEntity;
-import order_system.item.TopSize;
+import order_system.item.enumtype.BottomSize;
+import order_system.item.enumtype.ShoeSize;
+import order_system.item.enumtype.TopSize;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,16 +26,18 @@ public class ItemJpaEntity extends BaseEntity {
 
     private long stockQuantity;
 
-    private int shoeSize;
+    @Enumerated(EnumType.STRING)
+    private ShoeSize shoeSize;
 
     @Enumerated(EnumType.STRING)
     private TopSize topSize;
 
-    private int bottomSize;
+    @Enumerated(EnumType.STRING)
+    private BottomSize bottomSize;
 
     @Builder
     private ItemJpaEntity(final String itemName, final long itemPrice, final long stockQuantity,
-                          final int shoeSize, final TopSize topSize, final int bottomSize) {
+                          final ShoeSize shoeSize, final TopSize topSize, final BottomSize bottomSize) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.stockQuantity = stockQuantity;

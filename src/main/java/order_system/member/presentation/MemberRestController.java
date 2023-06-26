@@ -36,14 +36,14 @@ public class MemberRestController {
     }
 
     @PostMapping("/login")
-    public MemberResponseDto login(@RequestBody @Valid LoginRequestDto dto,
+    public MemberResponseDto login(@RequestBody @Valid final LoginRequestDto dto,
                                    HttpServletRequest request) {
         Member member = queryLoginService.query(dto, request);
         return MemberMapper.toResponseDto(member);
     }
 
     @GetMapping("/member")
-    public MemberResponseDto get(@Login MemberSession memberSession) {
+    public MemberResponseDto get(@Login final MemberSession memberSession) {
         Member member = queryByMemberIdService.query(memberSession.getMemberId());
         return MemberMapper.toResponseDto(member);
     }

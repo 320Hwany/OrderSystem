@@ -1,7 +1,7 @@
 package order_system.global.exception;
 
 import order_system.member.exception.MemberNotMatchException;
-import order_system.member.exception.SessionNotFoundException;
+import order_system.member.exception.SessionUnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,11 +31,20 @@ public class ApiRestControllerAdvice {
                 .build();
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(SessionNotFoundException.class)
-    ErrorResponseDto handleException(SessionNotFoundException e) {
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(UnauthorizedException.class)
+    ErrorResponseDto handleException(UnauthorizedException e) {
         return ErrorResponseDto.builder()
-                .statusCode(NOT_FOUND.value)
+                .statusCode(UNAUTHORIZED.value)
+                .message(e.getMessage())
+                .build();
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(SessionUnauthorizedException.class)
+    ErrorResponseDto handleException(SessionUnauthorizedException e) {
+        return ErrorResponseDto.builder()
+                .statusCode(UNAUTHORIZED.value)
                 .message(e.getMessage())
                 .build();
     }
