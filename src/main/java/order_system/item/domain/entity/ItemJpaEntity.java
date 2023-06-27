@@ -9,6 +9,7 @@ import order_system.global.BaseEntity;
 import order_system.item.enumtype.BottomSize;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
+import order_system.item.mapper.dto.ItemUpdateRequestDto;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -44,5 +45,14 @@ public class ItemJpaEntity extends BaseEntity {
         this.shoeSize = shoeSize;
         this.topSize = topSize;
         this.bottomSize = bottomSize;
+    }
+
+    public void update(final ItemUpdateRequestDto dto) {
+        this.itemName = dto.itemName();
+        this.itemPrice = dto.itemPrice();
+        this.stockQuantity = dto.stockQuantity();
+        this.shoeSize = dto.shoeSize();
+        this.topSize = dto.topSize();
+        this.bottomSize = dto.bottomSize();
     }
 }
