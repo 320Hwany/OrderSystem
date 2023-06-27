@@ -7,7 +7,7 @@ import order_system.item.mapper.dto.ItemSaveRequestDto;
 
 public class ItemMapper {
 
-    public static Item toDomain(ItemJpaEntity entity) {
+    public static Item toDomain(final ItemJpaEntity entity) {
         return Item.builder()
                 .itemId(entity.getId())
                 .itemName(entity.getItemName())
@@ -21,7 +21,7 @@ public class ItemMapper {
                 .build();
     }
 
-    public static ItemJpaEntity toEntity(ItemSaveRequestDto dto) {
+    public static ItemJpaEntity toEntity(final ItemSaveRequestDto dto) {
         return ItemJpaEntity.builder()
                 .itemName(dto.itemName())
                 .itemPrice(dto.itemPrice())
@@ -32,7 +32,7 @@ public class ItemMapper {
                 .build();
     }
 
-    public static ItemResponseDto toResponseDto(Item item) {
+    public static ItemResponseDto toResponseDto(final Item item) {
         return ItemResponseDto.builder()
                 .itemId(item.itemId())
                 .itemName(item.itemName())

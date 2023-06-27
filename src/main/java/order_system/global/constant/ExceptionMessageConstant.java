@@ -6,7 +6,9 @@ public enum ExceptionMessageConstant {
     MEMBER_NOT_MATCH_EXCEPTION("회원정보가 일치하지 않습니다"),
     MEMBER_UNAUTHORIZED_EXCEPTION("회원 로그인 후 이용해주세요"),
     MEMBER_NOT_FOUND_EXCEPTION("회원을 찾을 수 없습니다"),
-    ITEM_NOT_FOUND_EXCEPTION("상품을 찾을 수 없습니다");
+    ITEM_NOT_FOUND_EXCEPTION("상품을 찾을 수 없습니다"),
+    DELIVERY_NOT_FOUND_EXCEPTION("배송 정보를 찾을 수 없습니다"),
+    ORDER_NOT_FOUND_EXCEPTION("주문 정보를 찾을 수 없습니다");
 
     public final String message;
 

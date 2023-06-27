@@ -6,7 +6,7 @@ import order_system.order.OrderStatus;
 import java.time.LocalDateTime;
 
 @Builder
-public record Orders(
+public record Order(
         long orderId,
         long memberId,
         long deliveryId,

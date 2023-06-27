@@ -26,7 +26,8 @@ public class OrderJpaEntity extends BaseEntity {
     private OrderStatus orderStatus;
 
     @Builder
-    private OrderJpaEntity(final long memberId, final long deliveryId, final OrderStatus orderStatus) {
+    private OrderJpaEntity(final long memberId, final long deliveryId,
+                           final OrderStatus orderStatus) {
         this.memberId = memberId;
         this.deliveryId = deliveryId;
         this.orderStatus = orderStatus;

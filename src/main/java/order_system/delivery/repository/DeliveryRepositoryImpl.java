@@ -1,5 +1,7 @@
 package order_system.delivery.repository;
 
+import order_system.delivery.domain.entity.DeliveryJpaEntity;
+import order_system.delivery.exception.DeliveryNotFoundException;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -9,5 +11,21 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
 
     public DeliveryRepositoryImpl(final DeliveryJpaRepository deliveryJpaRepository) {
         this.deliveryJpaRepository = deliveryJpaRepository;
+    }
+
+    @Override
+    public void save(final DeliveryJpaEntity entity) {
+        deliveryJpaRepository.save(entity);
+    }
+
+    @Override
+    public DeliveryJpaEntity getById(long deliveryId) {
+        return deliveryJpaRepository.findById(deliveryId)
+                .orElseThrow(DeliveryNotFoundException::new);
+    }
+
+    @Override
+    public long count() {
+        return deliveryJpaRepository.count();
     }
 }
