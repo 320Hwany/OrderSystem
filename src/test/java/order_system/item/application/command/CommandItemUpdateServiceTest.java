@@ -3,6 +3,7 @@ package order_system.item.application.command;
 import order_system.item.domain.Item;
 import order_system.item.domain.entity.ItemJpaEntity;
 import order_system.item.enumtype.BottomSize;
+import order_system.item.enumtype.CategoryType;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
 import order_system.item.exception.ItemNotFoundException;
@@ -35,6 +36,7 @@ class CommandItemUpdateServiceTest {
                 .shoeSize(ShoeSize.SIZE_270)
                 .topSize(TopSize.XL)
                 .bottomSize(BottomSize.SIZE_32)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         // expected
@@ -56,6 +58,7 @@ class CommandItemUpdateServiceTest {
                 .shoeSize(ShoeSize.SIZE_270)
                 .topSize(TopSize.XL)
                 .bottomSize(BottomSize.SIZE_32)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         // when
@@ -68,6 +71,7 @@ class CommandItemUpdateServiceTest {
         assertThat(item.shoeSize()).isEqualTo(ShoeSize.SIZE_270);
         assertThat(item.topSize()).isEqualTo(TopSize.XL);
         assertThat(item.bottomSize()).isEqualTo(BottomSize.SIZE_32);
+        assertThat(item.categoryType()).isEqualTo(CategoryType.SHOES);
     }
 
     protected ItemJpaEntity saveItem() {
@@ -78,6 +82,7 @@ class CommandItemUpdateServiceTest {
                 .shoeSize(ShoeSize.SIZE_260)
                 .topSize(TopSize.L)
                 .bottomSize(BottomSize.SIZE_30)
+                .categoryType(CategoryType.TOP)
                 .build();
 
         itemRepository.save(entity);

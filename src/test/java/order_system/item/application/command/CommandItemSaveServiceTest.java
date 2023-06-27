@@ -1,6 +1,7 @@
 package order_system.item.application.command;
 
 import order_system.item.enumtype.BottomSize;
+import order_system.item.enumtype.CategoryType;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
 import order_system.item.mapper.dto.ItemSaveRequestDto;
@@ -32,6 +33,7 @@ class CommandItemSaveServiceTest {
                 .shoeSize(ShoeSize.SIZE_260)
                 .topSize(TopSize.L)
                 .bottomSize(BottomSize.SIZE_30)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         // when

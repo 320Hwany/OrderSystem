@@ -16,6 +16,7 @@ public class ItemMapper {
                 .shoeSize(entity.getShoeSize())
                 .topSize(entity.getTopSize())
                 .bottomSize(entity.getBottomSize())
+                .categoryType(entity.getCategoryType())
                 .createdAt(entity.getCreatedAt())
                 .lastModifiedAt(entity.getLastModifiedAt())
                 .build();
@@ -29,6 +30,7 @@ public class ItemMapper {
                 .shoeSize(dto.shoeSize())
                 .topSize(dto.topSize())
                 .bottomSize(dto.bottomSize())
+                .categoryType(dto.categoryType())
                 .build();
     }
 
@@ -41,6 +43,7 @@ public class ItemMapper {
                 .shoeSize(item.shoeSize())
                 .topSize(item.topSize())
                 .bottomSize(item.bottomSize())
+                .categoryType(item.categoryType())
                 .build();
     }
 }

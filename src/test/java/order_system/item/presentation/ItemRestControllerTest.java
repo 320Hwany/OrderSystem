@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import order_system.item.domain.entity.ItemJpaEntity;
 import order_system.item.enumtype.BottomSize;
+import order_system.item.enumtype.CategoryType;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
 import order_system.item.mapper.dto.ItemSaveRequestDto;
@@ -124,6 +125,7 @@ class ItemRestControllerTest {
                 .shoeSize(ShoeSize.SIZE_260)
                 .topSize(TopSize.L)
                 .bottomSize(BottomSize.SIZE_30)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         signup();
@@ -169,6 +171,7 @@ class ItemRestControllerTest {
                 .shoeSize(ShoeSize.SIZE_260)
                 .topSize(TopSize.L)
                 .bottomSize(BottomSize.SIZE_30)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         itemRepository.save(entity);

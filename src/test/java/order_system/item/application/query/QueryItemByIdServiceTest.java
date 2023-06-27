@@ -3,6 +3,7 @@ package order_system.item.application.query;
 import order_system.item.domain.Item;
 import order_system.item.domain.entity.ItemJpaEntity;
 import order_system.item.enumtype.BottomSize;
+import order_system.item.enumtype.CategoryType;
 import order_system.item.enumtype.ShoeSize;
 import order_system.item.enumtype.TopSize;
 import order_system.item.exception.ItemNotFoundException;
@@ -48,6 +49,7 @@ class QueryItemByIdServiceTest {
         assertThat(item.shoeSize()).isEqualTo(entity.getShoeSize());
         assertThat(item.topSize()).isEqualTo(entity.getTopSize());
         assertThat(item.bottomSize()).isEqualTo(entity.getBottomSize());
+        assertThat(item.categoryType()).isEqualTo(entity.getCategoryType());
         assertThat(item.createdAt()).isEqualTo(entity.getCreatedAt());
         assertThat(item.lastModifiedAt()).isEqualTo(entity.getLastModifiedAt());
     }
@@ -61,6 +63,7 @@ class QueryItemByIdServiceTest {
                 .shoeSize(ShoeSize.SIZE_260)
                 .topSize(TopSize.L)
                 .bottomSize(BottomSize.SIZE_30)
+                .categoryType(CategoryType.SHOES)
                 .build();
 
         itemRepository.save(entity);

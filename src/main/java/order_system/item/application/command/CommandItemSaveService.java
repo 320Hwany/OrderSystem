@@ -1,5 +1,6 @@
 package order_system.item.application.command;
 
+import order_system.item.domain.Item;
 import order_system.item.domain.entity.ItemJpaEntity;
 import order_system.item.mapper.ItemMapper;
 import order_system.item.mapper.dto.ItemSaveRequestDto;
@@ -17,8 +18,9 @@ public class CommandItemSaveService {
         this.itemRepository = itemRepository;
     }
 
-    public void command(final ItemSaveRequestDto dto) {
+    public Item command(final ItemSaveRequestDto dto) {
         ItemJpaEntity entity = ItemMapper.toEntity(dto);
         itemRepository.save(entity);
+        return ItemMapper.toDomain(entity);
     }
 }
