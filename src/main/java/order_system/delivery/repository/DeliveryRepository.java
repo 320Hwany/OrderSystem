@@ -8,5 +8,7 @@ public interface DeliveryRepository {
 
     DeliveryJpaEntity getById(final long deliveryId);
 
+    void deleteById(final long deliveryId);
+
     long count();
 }

@@ -48,4 +48,13 @@ public class ApiRestControllerAdvice {
                 .message(e.getMessage())
                 .build();
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    ErrorResponseDto handleException(NotFoundException e) {
+        return ErrorResponseDto.builder()
+                .statusCode(NOT_FOUND.value)
+                .message(e.getMessage())
+                .build();
+    }
 }

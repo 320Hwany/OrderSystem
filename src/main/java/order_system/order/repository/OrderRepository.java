@@ -8,5 +8,7 @@ public interface OrderRepository {
 
     OrderJpaEntity getById(final long orderId);
 
+    void deleteById(final long orderId);
+
     long count();
 }

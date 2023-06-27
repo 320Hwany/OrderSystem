@@ -2,6 +2,7 @@ package order_system.order_item.presentation;
 
 import order_system.global.annotation.Login;
 import order_system.member.domain.MemberSession;
+import order_system.order_item.application.command.CommandOrderItemCancelService;
 import order_system.order_item.application.command.CommandOrderItemSaveService;
 import order_system.order_item.application.query.QueryOrderItemByMemberIdService;
 import order_system.order_item.mapper.dto.OrderItemForMemberDto;
@@ -16,11 +17,14 @@ import java.util.List;
 public class OrderItemRestController {
 
     private final CommandOrderItemSaveService commandOrderItemSaveService;
+    private final CommandOrderItemCancelService commandOrderItemCancelService;
     private final QueryOrderItemByMemberIdService queryOrderItemByMemberIdService;
 
     public OrderItemRestController(final CommandOrderItemSaveService commandOrderItemSaveService,
+                                   final CommandOrderItemCancelService commandOrderItemCancelService,
                                    final QueryOrderItemByMemberIdService queryOrderItemByMemberIdService) {
         this.commandOrderItemSaveService = commandOrderItemSaveService;
+        this.commandOrderItemCancelService = commandOrderItemCancelService;
         this.queryOrderItemByMemberIdService = queryOrderItemByMemberIdService;
     }
 
@@ -34,5 +38,10 @@ public class OrderItemRestController {
     public OrderItemResponseResultDto get(@Login final MemberSession memberSession) {
         List<OrderItemForMemberDto> dtos = queryOrderItemByMemberIdService.query(memberSession.getMemberId());
         return new OrderItemResponseResultDto(dtos);
+    }
+
+    @DeleteMapping("/orderItem/{orderId}")
+    public void cancel(@PathVariable final long orderId) {
+        commandOrderItemCancelService.command(orderId);
     }
 }

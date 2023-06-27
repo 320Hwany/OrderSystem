@@ -33,11 +33,6 @@ public class OrderItemRepositoryImpl implements OrderItemRepository {
     }
 
     @Override
-    public long count() {
-        return orderItemJpaRepository.count();
-    }
-
-    @Override
     public List<OrderItemForMemberDto> findByMemberId(final long memberId) {
         return queryFactory.select(new QOrderItemForMemberDto(
                         Expressions.asNumber(memberId).as("memberId"),
@@ -50,5 +45,15 @@ public class OrderItemRepositoryImpl implements OrderItemRepository {
                 .from(orderItemJpaEntity)
                 .innerJoin(orderJpaEntity).on(orderJpaEntity.memberId.eq(memberId))
                 .fetch();
+    }
+
+    @Override
+    public void deleteAllByOrderId(final long orderId) {
+        orderItemJpaRepository.deleteAllByOrderId(orderId);
+    }
+
+    @Override
+    public long count() {
+        return orderItemJpaRepository.count();
     }
 }

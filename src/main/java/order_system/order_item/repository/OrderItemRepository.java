@@ -9,7 +9,9 @@ public interface OrderItemRepository {
 
     void save(final OrderItemJpaEntity entity);
 
-    long count();
-
     List<OrderItemForMemberDto> findByMemberId(final long memberId);
+
+    void deleteAllByOrderId(final long orderId);
+
+    long count();
 }

@@ -19,9 +19,14 @@ public class DeliveryRepositoryImpl implements DeliveryRepository {
     }
 
     @Override
-    public DeliveryJpaEntity getById(long deliveryId) {
+    public DeliveryJpaEntity getById(final long deliveryId) {
         return deliveryJpaRepository.findById(deliveryId)
                 .orElseThrow(DeliveryNotFoundException::new);
+    }
+
+    @Override
+    public void deleteById(final long deliveryId) {
+        deliveryJpaRepository.deleteById(deliveryId);
     }
 
     @Override

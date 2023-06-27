@@ -19,9 +19,14 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public OrderJpaEntity getById(long orderId) {
+    public OrderJpaEntity getById(final long orderId) {
         return orderJpaRepository.findById(orderId)
                 .orElseThrow(OrderNotFoundException::new);
+    }
+
+    @Override
+    public void deleteById(final long orderId) {
+        orderJpaRepository.deleteById(orderId);
     }
 
     @Override
